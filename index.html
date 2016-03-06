@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="build/stub.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/jquery/src/jquery.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
-    <style>
-      body { margin:0; padding:0; }
-      #map { position:absolute; top:0; bottom:0; width:100%; }
-</style>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClH_lkoOsbknyTLgw1ogi48K0OnDWJAkc&libraries=places"></script>
+    <link href="style.css" rel='stylesheet' />
   </head>
   <body>
-    <p id="hello">Hello World!</p>
-    <div id='map'></div>
+    <div class='sidebar pad2'>
+        <h2>Add Place to Map</h2>
+        <input id="placeInput" type="text" size="50"><br>
+        <input id="add" type="submit" value="Submit">
+    </div>
+    <div id='map' class='map pad2'>Map</div>
     <script>
-    L.mapbox.accessToken = 'pk.eyJ1IjoidmFpcmVkZHkxMSIsImEiOiJhYjVmNmY2MWQ3MmFiNThkZjBiZTA1MzdkNTg3NTJhZiJ9.6YTxS5LbsOmXzVcUWzgE7w';
-    var map = L.mapbox.map('map', 'mapbox.wheatpaste')
-        .setView([37.783, -122.455], 14);
+      function init() {
+        var input = document.getElementById('placeInput');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        $('#add').on('click', function() {
+          var place = autocomplete.getPlace();
+          var lat = place.geometry.location.lat();
+          var lng = place.geometry.location.lng();
+          L.marker([lat, lng]).addTo(map);
+        })
+      }
+        L.mapbox.accessToken = 'pk.eyJ1IjoidmFpcmVkZHkxMSIsImEiOiJhYjVmNmY2MWQ3MmFiNThkZjBiZTA1MzdkNTg3NTJhZiJ9.6YTxS5LbsOmXzVcUWzgE7w';
+        var map = L.mapbox.map('map', 'mapbox.emerald')
+          .setView([37.783, -122.455], 14);
+      google.maps.event.addDomListener(window, 'load', init);
     </script>
   </body>
 </html>
