@@ -1,18 +1,24 @@
 /// <reference path="./typings/tsd.d.ts"/>
 
-function init() {
-  const input = (<HTMLInputElement>document.getElementById("placeInput"));
-  const autocomplete = new google.maps.places.Autocomplete(input);
-  const map = L.mapbox.map("map", "mapbox.emerald");
-  map.setView([37.783, -122.455], 14);
-  $("#add").on("click", function() {
-    const place = autocomplete.getPlace();
-    const lat = place.geometry.location.lat();
-    const lng = place.geometry.location.lng();
-    L.marker([lat, lng]).addTo(map);
+function initial() {
+  const ref = new Firebase("https://fiery-heat-2958.firebaseio.com");
+
+  const gmailOpts = {
+    remember: "sessionOnly",
+    scope: "email"
+  };
+
+  const gmailOnSignin = (error: Error) => {
+    if (error) {
+      console.log("Login Failed!", error);
+    } else {
+      // We"ll never get here, as the page will redirect on success.
+    }
+  };
+
+  $("#signingoogle").on("click", () => {
+    ref.authWithOAuthRedirect("google", gmailOnSignin, gmailOpts);
   });
 }
 
-L.mapbox.accessToken = "pk.eyJ1IjoidmFpcmVkZHkxMSIsImEiOiJhYjVmNmY2MWQ3MmFiNThkZjBiZTA1MzdkNTg3NTJhZiJ9.6YTxS5LbsOmXzVcUWzgE7w";
-
-google.maps.event.addDomListener(window, "load", init);
+document.addEventListener("DOMContentLoaded", initial);

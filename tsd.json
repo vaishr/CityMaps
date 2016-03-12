@@ -22,6 +22,9 @@
     },
     "googlemaps/google.maps.d.ts": {
       "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
+    },
+    "firebase/firebase.d.ts": {
+      "commit": "9f0f926a12026287b5a4a229e5672c01e7549313"
     }
   }
 }

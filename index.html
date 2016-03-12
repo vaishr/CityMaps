@@ -3,6 +3,9 @@
   <head>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/firebase/firebase.js"></script>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>
     <link href='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.css' rel='stylesheet' />
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClH_lkoOsbknyTLgw1ogi48K0OnDWJAkc&libraries=places"></script>
@@ -10,13 +13,18 @@
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="sidebar pad2">
-        <h2>Add Place to Map</h2>
-        <input id="placeInput" type="text" size="50"><br>
-        <input id="add" type="submit" value="Submit">
+    <div class="container">
+      <div class="row col-md-4">
+        <form class="form-signin">
+          <h2 class="form-signin-heading">Welcome!</h2>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <button id ="signinreg" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button><br>
+          <button id ="signingoogle" class="btn btn-lg btn-danger btn-block" type="submit">Sign in with Google</button>
+      </div>
+      </form>
     </div>
-    <div>
-    <div id="map" class="map pad2">Map</div>
-  </div>
-  </body>
+  <body>
 </html>

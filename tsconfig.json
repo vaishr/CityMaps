@@ -25,7 +25,8 @@
         "placeOpenBraceOnNewLineForControlBlocks": false
     },
     "files": [
-        "stub.ts"
+        "stub.ts",
+        "map.ts"
     ],
     "scripts": {
         "postbuild": "echo after building"
